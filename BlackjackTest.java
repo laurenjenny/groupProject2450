@@ -26,6 +26,12 @@ public class BlackjackTest {
 		}
 		
 		System.out.println("Your cards are: " + game.playerHand.hand);
+		
+		if(game.playerHand.value() > 21){
+			game.bust();
+		}
 	}
+	
+	
 
 }

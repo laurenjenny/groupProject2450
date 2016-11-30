@@ -29,8 +29,11 @@ public class Blackjack {
 	}
 	
 	public void dealerPlay(){
-		if(playerHand.value() < 17 && playerHand.value() > 21){
+		if(dealerHand.value() < 17 && dealerHand.value() > 21){
 			playerHand.addCard(hit());
+		}
+		else if(dealerHand.value() > 21){
+			bust();
 		}
 		else stay();
 	}
@@ -39,6 +42,9 @@ public class Blackjack {
 		if(ai1.value() < 17 && ai1.value() > 21){
 			ai1.addCard(hit());
 		}
+		else if(ai1.value() > 21){
+			bust();
+		}
 		else stay();
 	}
 	
@@ -46,6 +52,9 @@ public class Blackjack {
 	public void ai2Play(){
 		if(ai2.value() < 17 && ai2.value() > 21){
 			ai2.addCard(hit());
+		}
+		else if(ai2.value() > 21){
+			bust();
 		}
 		else stay();
 	}
