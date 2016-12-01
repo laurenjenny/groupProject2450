@@ -1,7 +1,12 @@
 package groupProject;
 
-public class Card{
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
+public class Card extends JLabel{
+
+	private ImageIcon icon;
+	
 	public enum Suit {
 		HEARTS, DIAMONDS, SPADES, CLUBS}
 
@@ -29,6 +34,7 @@ public class Card{
 	Card(Suit suit, Face face){
 		this.face = face;
 		this.suit = suit;	
+		this.icon = new ImageIcon(getClass().getResource("Images/" + this.toString() + ".png"));
 	}
 
 	public Face getFace(){
@@ -37,6 +43,11 @@ public class Card{
 	
 	public Suit getSuit(){
 		return suit;
+	}
+	
+	public ImageIcon getIcon()
+	{
+		return icon;
 	}
 
 	@Override
