@@ -1,11 +1,9 @@
 package groupProject;
 
-import groupProject.Card.Face;
-import groupProject.Card.Suit;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import groupProject.Card.*;
 
 public class Deck {
 

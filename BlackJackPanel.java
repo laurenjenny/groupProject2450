@@ -1,6 +1,7 @@
 package groupProject;
 
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -17,6 +18,7 @@ public class BlackJackPanel extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	final JPanel menu = new JPanel();
 	//Totals
     final JLabel playerTotal = new JLabel();
     final JLabel dealerTotal = new JLabel();
@@ -52,7 +54,8 @@ public class BlackJackPanel extends JPanel
     JButton btnStay = new JButton("STAY");
     JButton btnHit = new JButton("HIT");
     JLabel message = new JLabel();
-    final JButton dealNewCards = new JButton("Deal new cards");
+    final JButton dealNewCards = new JButton("New Deal");
+    final JButton quit = new JButton("Quit");
     Blackjack game = new Blackjack();
     int hitCount = 0;
     
@@ -64,6 +67,49 @@ public class BlackJackPanel extends JPanel
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(15, 16, 1120, 796);
 		setLayout(null);
+        
+        menu.setForeground(Color.WHITE);
+        menu.setBounds(349, 174, 564, 368);
+        menu.setLayout(null);
+        add(menu);
+        
+        dealNewCards.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        dealNewCards.setBounds(217, 152, 150, 50);
+        dealNewCards.setFocusable(false);
+        dealNewCards.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        dealNewCards.setBackground(Color.LIGHT_GRAY);
+        dealNewCards.setVisible(true);
+        dealNewCards.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.newGame();
+                resetCards();
+            }
+        });
+        menu.add(dealNewCards);
+        
+        quit.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        quit.setBounds(217, 240, 150, 50);
+        quit.setFocusable(false);
+        quit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        quit.setBackground(Color.LIGHT_GRAY);
+        quit.setVisible(true);
+        quit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	CardLayout cl = (CardLayout)(Main.frame.getContentPane().getLayout());
+				cl.show(Main.frame.getContentPane(), "Menu");
+            }
+        });
+        menu.add(quit);
+
+        //Win/Lose Message
+        message.setFont(new Font("Sitka Text", Font.BOLD, 30));
+        message.setForeground(Color.BLACK);
+        message.setBounds(183, 38, 200, 60);
+        message.setHorizontalAlignment(SwingConstants.RIGHT);
+       
+        menu.add(message);
 
         //Totals
         //Dealer
@@ -205,32 +251,6 @@ public class BlackJackPanel extends JPanel
         add(ai2Card4);
         add(ai2Card5);
         add(ai2Card6);
-        
-
-
-        //Win/Lose Message
-        message.setFont(new Font("Sitka Text", Font.BOLD, 30));
-        message.setForeground(Color.BLACK);
-        message.setBounds(938, 114, 200, 60);
-        message.setHorizontalAlignment(SwingConstants.RIGHT);
-        add(message);
-
-        //New Cards button. Does the same as the menu item. Will need to reset the UI so they can play another game
-        dealNewCards.setBounds(1018, 174, 115, 29);
-        dealNewCards.setFocusable(false);
-        dealNewCards.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        dealNewCards.setBackground(Color.BLACK);
-        dealNewCards.setForeground(Color.WHITE);
-        dealNewCards.setBorder(UIManager.getBorder("DesktopIcon.border"));
-        dealNewCards.setVisible(true);
-        dealNewCards.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.newGame();
-                resetCards();
-            }
-        });
-        add(dealNewCards);
 
 
         //Hit Button
@@ -263,11 +283,9 @@ public class BlackJackPanel extends JPanel
                 }
                 playerTotal.setText(String.valueOf(game.playerHand.value()));
                 ++hitCount;
-                /*
-                if(game.playerBusts){
+                if(game.endGame){
                     endGame();
                 }
-                */
             }
         });
         
@@ -288,6 +306,64 @@ public class BlackJackPanel extends JPanel
             public void actionPerformed(ActionEvent e) {
                 dealerCard2.setIcon(game.dealerHand.hand.get(1).getIcon());
                 game.stay();
+                switch (game.ai1.hand.size()){
+                    case 3: dealerCard3.setIcon(game.ai1.hand.get(2).getIcon());
+                        ai1Card3.setVisible(true);
+                        break;
+                    case 4:
+                    	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
+                    	ai1Card3.setVisible(true);
+                    	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
+                    	ai1Card4.setVisible(true);
+                        break;
+                    case 5:
+                    	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
+                    	ai1Card3.setVisible(true);
+                    	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
+                    	ai1Card4.setVisible(true);
+                    	ai1Card5.setIcon(game.ai1.hand.get(4).getIcon());
+                    	ai1Card5.setVisible(true);
+                        break;
+                    case 6:
+                    	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
+                    	ai1Card3.setVisible(true);
+                    	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
+                    	ai1Card4.setVisible(true);
+                    	ai1Card5.setIcon(game.ai1.hand.get(4).getIcon());
+                    	ai1Card5.setVisible(true);
+                    	ai1Card6.setIcon(game.ai1.hand.get(5).getIcon());
+                    	ai1Card6.setVisible(true);
+                        break;
+                }
+                switch (game.ai2.hand.size()){
+                    case 3: dealerCard3.setIcon(game.ai2.hand.get(2).getIcon());
+                        ai2Card3.setVisible(true);
+                        break;
+                    case 4:
+                    	ai2Card3.setIcon(game.ai2.hand.get(2).getIcon());
+                    	ai2Card3.setVisible(true);
+                    	ai2Card4.setIcon(game.ai2.hand.get(3).getIcon());
+                    	ai2Card4.setVisible(true);
+                        break;
+                    case 5:
+                    	ai2Card3.setIcon(game.ai2.hand.get(2).getIcon());
+                    	ai2Card3.setVisible(true);
+                    	ai2Card4.setIcon(game.ai2.hand.get(3).getIcon());
+                    	ai2Card4.setVisible(true);
+                    	ai2Card5.setIcon(game.ai2.hand.get(4).getIcon());
+                    	ai2Card5.setVisible(true);
+                        break;
+                    case 6:
+                    	ai2Card3.setIcon(game.ai2.hand.get(2).getIcon());
+                    	ai2Card3.setVisible(true);
+                    	ai2Card4.setIcon(game.ai2.hand.get(3).getIcon());
+                    	ai2Card4.setVisible(true);
+                    	ai2Card5.setIcon(game.ai2.hand.get(4).getIcon());
+                    	ai2Card5.setVisible(true);
+                    	ai2Card6.setIcon(game.ai2.hand.get(5).getIcon());
+                    	ai2Card6.setVisible(true);
+                        break;
+                }
                 switch (game.dealerHand.hand.size()){
                     case 3: dealerCard3.setIcon(game.dealerHand.hand.get(2).getIcon());
                         dealerCard3.setVisible(true);
@@ -317,6 +393,8 @@ public class BlackJackPanel extends JPanel
                         dealerCard6.setVisible(true);
                         break;
                 }
+                ai1Total.setText(String.valueOf(game.ai1.value()));
+                ai2Total.setText(String.valueOf(game.ai2.value()));
                 dealerTotal.setText(String.valueOf(game.dealerHand.value()));
                 endGame();
             }
@@ -347,11 +425,25 @@ public class BlackJackPanel extends JPanel
         dealerCard4.setVisible(false);
         dealerCard5.setVisible(false);
         dealerCard6.setVisible(false);
+        ai1Card1.setIcon(game.ai1.hand.get(0).getIcon());
+        ai1Card2.setIcon(game.ai1.hand.get(1).getIcon());
+        ai1Card3.setVisible(false);
+        ai1Card4.setVisible(false);
+        ai1Card5.setVisible(false);
+        ai1Card6.setVisible(false);
+        ai2Card1.setIcon(game.ai2.hand.get(0).getIcon());
+        ai2Card2.setIcon(game.ai2.hand.get(1).getIcon());
+        ai2Card3.setVisible(false);
+        ai2Card4.setVisible(false);
+        ai2Card5.setVisible(false);
+        ai2Card6.setVisible(false);
         
 
         //Totals
         playerTotal.setText(String.valueOf(game.playerHand.value()));
         dealerTotal.setText(String.valueOf(game.dealerHand.value()));
+        ai1Total.setText(String.valueOf(game.ai1.value()));
+        ai2Total.setText(String.valueOf(game.ai2.value()));
 
         //Hit count
         hitCount = 0;
@@ -360,21 +452,19 @@ public class BlackJackPanel extends JPanel
         btnHit.setEnabled(true);
         btnStay.setEnabled(true);
         message.setVisible(false);
-        dealNewCards.setVisible(false);
+        menu.setVisible(false);
         
         //end game immediately if blackjack
-        /*
-        if(game.tieGame || game.dealerWins || game.playerWins)
+        if(game.endGame == true)
         {
         	dealerCard2.setIcon(game.dealerHand.hand.get(1).getIcon());
         	endGame();
         }
-		*/
     }
 
     //Ending the game
     public void endGame(){
-       /* if(game.playerBusts) {
+        if(game.playerBusts) {
             message.setText("You Bust!");
             message.setVisible(true);
             disableButtons();
@@ -391,25 +481,18 @@ public class BlackJackPanel extends JPanel
             dealerTotal.setText(String.valueOf(game.dealerHand.value()));
             disableButtons();
         }
-        if(game.dealerWins && !game.dealerBusts){
-            message.setText("Dealer Wins!");
-            message.setVisible(true);
-            dealerTotal.setText(String.valueOf(game.dealerHand.value()));
-            disableButtons();
-        }
-        if(game.tieGame){
+        if(game.playerPush){
         	message.setText("Push!");
         	message.setVisible(true);
         	dealerTotal.setText(String.valueOf(game.dealerHand.value()));
             disableButtons();
-        }*/
+        }
     }
 
     //Disabling the buttons
     public void disableButtons(){
         btnHit.setEnabled(false);
         btnStay.setEnabled(false);
-        dealNewCards.setVisible(true);
+        menu.setVisible(true);
     }
-
 }
