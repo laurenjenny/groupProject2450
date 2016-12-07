@@ -10,16 +10,19 @@ public class Blackjack {
 	Hand ai2 = new Hand();
 	boolean playerBusts = false;
     boolean playerWins = false;
+    boolean playerLose = false;
     boolean playerPush = false;
     boolean playerBlackJack = false;
     boolean dealerBusts = false;
     boolean dealerBlackJack = false;
     boolean ai1Busts = false;
     boolean ai1Wins = false;
+    boolean ai1Lose = false;
     boolean ai1Push = false;
     boolean ai1BlackJack = false;
     boolean ai2Busts = false;
     boolean ai2Wins = false;
+    boolean ai2Lose = false;
     boolean ai2Push = false;
     boolean ai2BlackJack = false;
     boolean endGame = false;
@@ -28,16 +31,19 @@ public class Blackjack {
 	public void newGame(){
 		playerBusts = false;
 	    playerWins = false;
+	    playerLose = false;
 	    playerPush = false;
 	    playerBlackJack = false;
 	    dealerBusts = false;
 	    dealerBlackJack = false;
 	    ai1Busts = false;
 	    ai1Wins = false;
+	    ai1Lose = false;
 	    ai1Push = false;
 	    ai1BlackJack = false;
 	    ai2Busts = false;
 	    ai2Wins = false;
+	    ai2Lose = false;
 	    ai2Push = false;
 	    ai2BlackJack = false;
 	    endGame = false;
@@ -93,30 +99,29 @@ public class Blackjack {
 	}
 	
 	public void dealerPlay(){
-		if(dealerHand.value() < 17){
+		while(dealerHand.value() < 17){
 			dealerHand.addCard(deck.draw(1));
 		}
-		else if(dealerHand.value() > 21){
+		if(dealerHand.value() > 21){
 			dealerBusts = true;
 		}
-		//else stay();
 	}
 	
 	public void ai1Play(){
-		if(ai1.value() < 17){
+		while(ai1.value() < 17){
 			ai1.addCard(deck.draw(1));
 		}
-		else if(ai1.value() > 21){
+		if(ai1.value() > 21){
 			ai1Busts = true;
 		}
 	}
 	
 	
 	public void ai2Play(){
-		if(ai2.value() < 17){
+		while(ai2.value() < 17){
 			ai2.addCard(deck.draw(1));
 		}
-		else if(ai2.value() > 21){
+		if(ai2.value() > 21){
 			ai2Busts = true;
 		}
 	}
@@ -139,18 +144,24 @@ public class Blackjack {
 				playerWins = true;
 			if(playerHand.value() == dealerHand.value())
 				playerPush = true;
+			if(playerHand.value() < dealerHand.value())
+				playerLose = true;
 		}
 		if(!ai1Busts && !ai1BlackJack){
 			if(ai1.value() > dealerHand.value())
 				ai1Wins = true;
 			if(ai1.value() == dealerHand.value())
 				ai1Push = true;
+			if(ai1.value() < dealerHand.value())
+				ai1Lose = true;
 		}
 		if(!ai1Busts && !ai1BlackJack){
 			if(ai2.value() > dealerHand.value())
 				ai2Wins = true;
 			if(ai2.value() == dealerHand.value())
 				ai2Push = true;
+			if(ai2.value() < dealerHand.value())
+				ai2Lose = true;
 		}
 		endGame = true;
 	}

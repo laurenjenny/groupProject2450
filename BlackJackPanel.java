@@ -54,6 +54,8 @@ public class BlackJackPanel extends JPanel
     JButton btnStay = new JButton("STAY");
     JButton btnHit = new JButton("HIT");
     JLabel message = new JLabel();
+    JLabel messageAI1 = new JLabel();
+    JLabel messageAI2 = new JLabel();
     final JButton dealNewCards = new JButton("New Deal");
     final JButton quit = new JButton("Quit");
     Blackjack game = new Blackjack();
@@ -107,10 +109,25 @@ public class BlackJackPanel extends JPanel
         message.setFont(new Font("Sitka Text", Font.BOLD, 30));
         message.setForeground(Color.BLACK);
         message.setBounds(183, 38, 200, 60);
-        message.setHorizontalAlignment(SwingConstants.RIGHT);
+        message.setHorizontalAlignment(SwingConstants.CENTER);
        
         menu.add(message);
-
+        
+        messageAI1.setFont(new Font("Sitka Text", Font.BOLD, 30));
+        messageAI1.setForeground(Color.BLACK);
+        messageAI1.setBackground(Color.LIGHT_GRAY);
+        messageAI1.setBounds(935, 524, 200, 60);
+        messageAI1.setHorizontalAlignment(SwingConstants.CENTER);
+        add(messageAI1);
+        
+        
+        messageAI2.setFont(new Font("Sitka Text", Font.BOLD, 30));
+        messageAI2.setForeground(Color.BLACK);
+        messageAI2.setBackground(Color.LIGHT_GRAY);
+        messageAI2.setBounds(107, 524, 200, 60);
+        messageAI2.setHorizontalAlignment(SwingConstants.CENTER);
+        add(messageAI2);
+        
         //Totals
         //Dealer
         dealerTotal.setOpaque(true);
@@ -135,7 +152,7 @@ public class BlackJackPanel extends JPanel
         ai1Total.setBackground(Color.BLACK);
         ai1Total.setForeground(Color.WHITE);
         ai1Total.setOpaque(true);
-        ai1Total.setBounds(170, 400, 130, 33);
+        ai1Total.setBounds(980, 400, 130, 33);
         ai1Total.setText(String.valueOf(game.playerHand.value()));
         ai1Total.setHorizontalAlignment(SwingConstants.CENTER);
         add(ai1Total);
@@ -144,7 +161,7 @@ public class BlackJackPanel extends JPanel
         ai2Total.setBackground(Color.BLACK);
         ai2Total.setForeground(Color.WHITE);
         ai2Total.setOpaque(true);
-        ai2Total.setBounds(980, 400, 130, 33);
+        ai2Total.setBounds(170, 400, 130, 33);
         ai2Total.setText(String.valueOf(game.playerHand.value()));
         ai2Total.setHorizontalAlignment(SwingConstants.CENTER);
         add(ai2Total);
@@ -191,37 +208,37 @@ public class BlackJackPanel extends JPanel
         
         //AI cards
 
-        ai1Card1.setBounds(107, 455, 151, 217);
+        ai2Card1.setBounds(107, 455, 151, 217);
               
-        ai1Card2.setBounds(135, 455, 151, 217);
+        ai2Card2.setBounds(135, 455, 151, 217);
     
-        ai1Card3.setBounds(160, 455, 151, 217);
-        ai1Card3.setVisible(false);
-    
-        ai1Card4.setBounds(188, 455, 151, 217);
-        ai1Card4.setVisible(false);
-          
-        ai1Card5.setBounds(216, 455, 151, 217);
-        ai1Card5.setVisible(false);
-             
-        ai1Card6.setBounds(244, 455, 151, 217);
-        ai1Card6.setVisible(false);
-        
-        ai2Card1.setBounds(907, 455, 151, 217);
-        
-        ai2Card2.setBounds(935, 455, 151, 217);
-    
-        ai2Card3.setBounds(960, 455, 151, 217);
+        ai2Card3.setBounds(160, 455, 151, 217);
         ai2Card3.setVisible(false);
     
-        ai2Card4.setBounds(988, 455, 151, 217);
+        ai2Card4.setBounds(188, 455, 151, 217);
         ai2Card4.setVisible(false);
           
-        ai2Card5.setBounds(1016, 455, 151, 217);
+        ai2Card5.setBounds(216, 455, 151, 217);
         ai2Card5.setVisible(false);
              
-        ai2Card6.setBounds(1044, 455, 151, 217);
+        ai2Card6.setBounds(244, 455, 151, 217);
         ai2Card6.setVisible(false);
+        
+        ai1Card1.setBounds(907, 455, 151, 217);
+        
+        ai1Card2.setBounds(935, 455, 151, 217);
+    
+        ai1Card3.setBounds(960, 455, 151, 217);
+        ai1Card3.setVisible(false);
+    
+        ai1Card4.setBounds(988, 455, 151, 217);
+        ai1Card4.setVisible(false);
+          
+        ai1Card5.setBounds(1016, 455, 151, 217);
+        ai1Card5.setVisible(false);
+             
+        ai1Card6.setBounds(1044, 455, 151, 217);
+        ai1Card6.setVisible(false);
         
       //Adding the Cards to the Panel. This order will determine which cards on are top/bottom
         add(playerCard6);
@@ -283,7 +300,7 @@ public class BlackJackPanel extends JPanel
                 }
                 playerTotal.setText(String.valueOf(game.playerHand.value()));
                 ++hitCount;
-                if(game.endGame){
+                if(game.endGame){                	
                     endGame();
                 }
             }
@@ -305,97 +322,7 @@ public class BlackJackPanel extends JPanel
             @Override
             public void actionPerformed(ActionEvent e) {
                 dealerCard2.setIcon(game.dealerHand.hand.get(1).getIcon());
-                game.stay();
-                switch (game.ai1.hand.size()){
-                    case 3: dealerCard3.setIcon(game.ai1.hand.get(2).getIcon());
-                        ai1Card3.setVisible(true);
-                        break;
-                    case 4:
-                    	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
-                    	ai1Card3.setVisible(true);
-                    	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
-                    	ai1Card4.setVisible(true);
-                        break;
-                    case 5:
-                    	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
-                    	ai1Card3.setVisible(true);
-                    	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
-                    	ai1Card4.setVisible(true);
-                    	ai1Card5.setIcon(game.ai1.hand.get(4).getIcon());
-                    	ai1Card5.setVisible(true);
-                        break;
-                    case 6:
-                    	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
-                    	ai1Card3.setVisible(true);
-                    	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
-                    	ai1Card4.setVisible(true);
-                    	ai1Card5.setIcon(game.ai1.hand.get(4).getIcon());
-                    	ai1Card5.setVisible(true);
-                    	ai1Card6.setIcon(game.ai1.hand.get(5).getIcon());
-                    	ai1Card6.setVisible(true);
-                        break;
-                }
-                switch (game.ai2.hand.size()){
-                    case 3: dealerCard3.setIcon(game.ai2.hand.get(2).getIcon());
-                        ai2Card3.setVisible(true);
-                        break;
-                    case 4:
-                    	ai2Card3.setIcon(game.ai2.hand.get(2).getIcon());
-                    	ai2Card3.setVisible(true);
-                    	ai2Card4.setIcon(game.ai2.hand.get(3).getIcon());
-                    	ai2Card4.setVisible(true);
-                        break;
-                    case 5:
-                    	ai2Card3.setIcon(game.ai2.hand.get(2).getIcon());
-                    	ai2Card3.setVisible(true);
-                    	ai2Card4.setIcon(game.ai2.hand.get(3).getIcon());
-                    	ai2Card4.setVisible(true);
-                    	ai2Card5.setIcon(game.ai2.hand.get(4).getIcon());
-                    	ai2Card5.setVisible(true);
-                        break;
-                    case 6:
-                    	ai2Card3.setIcon(game.ai2.hand.get(2).getIcon());
-                    	ai2Card3.setVisible(true);
-                    	ai2Card4.setIcon(game.ai2.hand.get(3).getIcon());
-                    	ai2Card4.setVisible(true);
-                    	ai2Card5.setIcon(game.ai2.hand.get(4).getIcon());
-                    	ai2Card5.setVisible(true);
-                    	ai2Card6.setIcon(game.ai2.hand.get(5).getIcon());
-                    	ai2Card6.setVisible(true);
-                        break;
-                }
-                switch (game.dealerHand.hand.size()){
-                    case 3: dealerCard3.setIcon(game.dealerHand.hand.get(2).getIcon());
-                        dealerCard3.setVisible(true);
-                        break;
-                    case 4:
-                        dealerCard3.setIcon(game.dealerHand.hand.get(2).getIcon());
-                        dealerCard3.setVisible(true);
-                        dealerCard4.setIcon(game.dealerHand.hand.get(3).getIcon());
-                        dealerCard4.setVisible(true);
-                        break;
-                    case 5:
-                        dealerCard3.setIcon(game.dealerHand.hand.get(2).getIcon());
-                        dealerCard3.setVisible(true);
-                        dealerCard4.setIcon(game.dealerHand.hand.get(3).getIcon());
-                        dealerCard4.setVisible(true);
-                        dealerCard5.setIcon(game.dealerHand.hand.get(4).getIcon());
-                        dealerCard5.setVisible(true);
-                        break;
-                    case 6:
-                        dealerCard3.setIcon(game.dealerHand.hand.get(2).getIcon());
-                        dealerCard3.setVisible(true);
-                        dealerCard4.setIcon(game.dealerHand.hand.get(3).getIcon());
-                        dealerCard4.setVisible(true);
-                        dealerCard5.setIcon(game.dealerHand.hand.get(4).getIcon());
-                        dealerCard5.setVisible(true);
-                        dealerCard6.setIcon(game.dealerHand.hand.get(5).getIcon());
-                        dealerCard6.setVisible(true);
-                        break;
-                }
-                ai1Total.setText(String.valueOf(game.ai1.value()));
-                ai2Total.setText(String.valueOf(game.ai2.value()));
-                dealerTotal.setText(String.valueOf(game.dealerHand.value()));
+                game.stay();                
                 endGame();
             }
         });
@@ -411,26 +338,56 @@ public class BlackJackPanel extends JPanel
 
     //Resetting the cards for a new deal
     public void resetCards(){
-  
+    	
+    	//Buttons
+        btnHit.setEnabled(true);
+        btnStay.setEnabled(true);
+        message.setVisible(false);
+        messageAI1.setVisible(false);
+        messageAI1.setOpaque(false);
+        messageAI2.setVisible(false);
+        messageAI2.setOpaque(false);
+        menu.setVisible(false);
+        
         //Cards
+        ai1Card1.setIcon(game.ai1.hand.get(0).getIcon());
+        ai1Card2.setIcon(game.ai1.hand.get(1).getIcon());
+        switch (game.ai1.hand.size()){     
+            
+            case 6:
+               	ai1Card6.setIcon(game.ai1.hand.get(5).getIcon());
+            	ai1Card6.setVisible(true);
+            case 5:            	
+            	ai1Card5.setIcon(game.ai1.hand.get(4).getIcon());
+            	ai1Card5.setVisible(true);
+            case 4:       
+            	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
+            	ai1Card4.setVisible(true);
+            case 3: 
+            	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
+                ai1Card3.setVisible(true);
+                break;
+                
+        }
+        
+        if(game.ai1BlackJack){
+        	messageAI1.setText("BLACKJACK!");
+        	messageAI1.setVisible(true);
+        	messageAI1.setOpaque(true);
+        }
+        if(game.ai1Busts){
+        	messageAI1.setText("Busted");
+        	messageAI1.setVisible(true); 
+        	messageAI1.setOpaque(true);
+        }
+        
     	playerCard1.setIcon(game.playerHand.hand.get(0).getIcon());
         playerCard2.setIcon(game.playerHand.hand.get(1).getIcon());
         playerCard3.setVisible(false);
         playerCard4.setVisible(false);
         playerCard5.setVisible(false);
-        playerCard6.setVisible(false);
-        dealerCard1.setIcon(game.dealerHand.hand.get(0).getIcon());
-        dealerCard2.setIcon(backOfCard);
-        dealerCard3.setVisible(false);
-        dealerCard4.setVisible(false);
-        dealerCard5.setVisible(false);
-        dealerCard6.setVisible(false);
-        ai1Card1.setIcon(game.ai1.hand.get(0).getIcon());
-        ai1Card2.setIcon(game.ai1.hand.get(1).getIcon());
-        ai1Card3.setVisible(false);
-        ai1Card4.setVisible(false);
-        ai1Card5.setVisible(false);
-        ai1Card6.setVisible(false);
+        playerCard6.setVisible(false);        
+        
         ai2Card1.setIcon(game.ai2.hand.get(0).getIcon());
         ai2Card2.setIcon(game.ai2.hand.get(1).getIcon());
         ai2Card3.setVisible(false);
@@ -438,21 +395,24 @@ public class BlackJackPanel extends JPanel
         ai2Card5.setVisible(false);
         ai2Card6.setVisible(false);
         
+        ai1Total.setText(String.valueOf(game.ai1.value()));
+        
+        dealerCard1.setIcon(game.dealerHand.hand.get(0).getIcon());
+        dealerCard2.setIcon(backOfCard);
+        dealerCard3.setVisible(false);
+        dealerCard4.setVisible(false);
+        dealerCard5.setVisible(false);
+        dealerCard6.setVisible(false);
+        
 
         //Totals
         playerTotal.setText(String.valueOf(game.playerHand.value()));
-        dealerTotal.setText(String.valueOf(game.dealerHand.value()));
+        dealerTotal.setText("");
         ai1Total.setText(String.valueOf(game.ai1.value()));
         ai2Total.setText(String.valueOf(game.ai2.value()));
 
         //Hit count
         hitCount = 0;
-
-        //Buttons
-        btnHit.setEnabled(true);
-        btnStay.setEnabled(true);
-        message.setVisible(false);
-        menu.setVisible(false);
         
         //end game immediately if blackjack
         if(game.endGame == true)
@@ -464,29 +424,125 @@ public class BlackJackPanel extends JPanel
 
     //Ending the game
     public void endGame(){
+    	
+    	switch (game.ai1.hand.size()){
+    		case 6:
+               	ai1Card6.setIcon(game.ai1.hand.get(5).getIcon());
+            	ai1Card6.setVisible(true);
+            case 5:            	
+            	ai1Card5.setIcon(game.ai1.hand.get(4).getIcon());
+            	ai1Card5.setVisible(true);
+            case 4:       
+            	ai1Card4.setIcon(game.ai1.hand.get(3).getIcon());
+            	ai1Card4.setVisible(true);
+            case 3: 
+            	ai1Card3.setIcon(game.ai1.hand.get(2).getIcon());
+                ai1Card3.setVisible(true);
+                break;
+        }
+    	
+        switch (game.ai2.hand.size()){
+        	case 6:
+               	ai2Card6.setIcon(game.ai2.hand.get(5).getIcon());
+            	ai2Card6.setVisible(true);
+            case 5:            	
+            	ai2Card5.setIcon(game.ai2.hand.get(4).getIcon());
+            	ai2Card5.setVisible(true);
+            case 4:       
+            	ai2Card4.setIcon(game.ai2.hand.get(3).getIcon());
+            	ai2Card4.setVisible(true);
+            case 3: 
+            	ai2Card3.setIcon(game.ai2.hand.get(2).getIcon());
+                ai2Card3.setVisible(true);
+                break;
+        }
+        
+        switch (game.dealerHand.hand.size()){          
+            case 6:
+            	dealerCard6.setIcon(game.dealerHand.hand.get(5).getIcon());
+                dealerCard6.setVisible(true);
+            case 5:
+            	dealerCard5.setIcon(game.dealerHand.hand.get(4).getIcon());
+                dealerCard5.setVisible(true);
+            case 4:
+            	dealerCard4.setIcon(game.dealerHand.hand.get(3).getIcon());
+                dealerCard4.setVisible(true);
+            case 3:
+                dealerCard3.setIcon(game.dealerHand.hand.get(2).getIcon());
+                dealerCard3.setVisible(true); 
+                break;
+        }
+    	
+    	dealerTotal.setText(String.valueOf(game.dealerHand.value()));
+    	playerTotal.setText(String.valueOf(game.playerHand.value()));
+    	ai1Total.setText(String.valueOf(game.ai1.value()));
+    	ai2Total.setText(String.valueOf(game.ai2.value()));
+    	
         if(game.playerBusts) {
             message.setText("You Bust!");
-            message.setVisible(true);
-            disableButtons();
+            message.setVisible(true);       
         }
         if(game.playerWins && !game.playerBusts){
             message.setText("You Win!");
-            message.setVisible(true);
-            dealerTotal.setText(String.valueOf(game.dealerHand.value()));
-            disableButtons();
+            message.setVisible(true);     
         }
         if(game.dealerBusts){
             message.setText("Dealer Busts!");
-            message.setVisible(true);
-            dealerTotal.setText(String.valueOf(game.dealerHand.value()));
-            disableButtons();
+            message.setVisible(true);         
         }
         if(game.playerPush){
         	message.setText("Push!");
-        	message.setVisible(true);
-        	dealerTotal.setText(String.valueOf(game.dealerHand.value()));
-            disableButtons();
+        	message.setVisible(true);           
         }
+        if(game.playerLose){
+        	message.setText("You lose");
+        	message.setVisible(true);           
+        }
+        
+        if(game.ai1Push){
+        	messageAI1.setText("Push");
+        	messageAI1.setVisible(true);
+        	messageAI1.setOpaque(true);
+        }
+        if(game.ai1Wins){
+        	messageAI1.setText("Winner!");
+        	messageAI1.setVisible(true);
+        	messageAI1.setOpaque(true);
+        }
+        if(game.ai1Lose){
+        	messageAI1.setText("Lose");
+        	messageAI1.setVisible(true);
+        	messageAI1.setOpaque(true);
+        }
+        
+        
+        if(game.ai2BlackJack){
+        	messageAI2.setText("BLACKJACK!");
+        	messageAI2.setVisible(true);
+        	messageAI2.setOpaque(true);
+        }
+        if(game.ai2Push){
+        	messageAI2.setText("Push");
+        	messageAI2.setVisible(true);
+        	messageAI2.setOpaque(true);
+        }
+        if(game.ai2Busts){
+        	messageAI2.setText("Busted");
+        	messageAI2.setVisible(true);
+        	messageAI2.setOpaque(true);
+        }
+        if(game.ai2Wins){
+        	messageAI2.setText("Winner!");
+        	messageAI2.setVisible(true);
+        	messageAI2.setOpaque(true);
+        }
+        if(game.ai2Lose){
+        	messageAI2.setText("Lose");
+        	messageAI2.setVisible(true);
+        	messageAI2.setOpaque(true);
+        }
+        
+        disableButtons();
     }
 
     //Disabling the buttons
