@@ -4,10 +4,10 @@ import groupProject.Deck;
 
 public class Blackjack {
 	Deck deck = new Deck();
-	Hand dealerHand = new Hand();
-	Hand playerHand = new Hand();
-	Hand ai1 = new Hand();
-	Hand ai2 = new Hand();
+	BlackjackHand dealerHand = new BlackjackHand();
+	BlackjackHand playerHand = new BlackjackHand();
+	BlackjackHand ai1 = new BlackjackHand();
+	BlackjackHand ai2 = new BlackjackHand();
 	boolean playerBusts = false;
     boolean playerWins = false;
     boolean playerLose = false;

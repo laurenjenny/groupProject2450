@@ -71,12 +71,13 @@ public class BlackJackPanel extends JPanel
 		setLayout(null);
         
         menu.setForeground(Color.WHITE);
-        menu.setBounds(349, 174, 564, 368);
+        menu.setBounds(863, 11, 332, 368);
         menu.setLayout(null);
+        menu.setVisible(true);
         add(menu);
         
         dealNewCards.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        dealNewCards.setBounds(217, 152, 150, 50);
+        dealNewCards.setBounds(107, 153, 150, 50);
         dealNewCards.setFocusable(false);
         dealNewCards.setCursor(new Cursor(Cursor.HAND_CURSOR));
         dealNewCards.setBackground(Color.LIGHT_GRAY);
@@ -91,7 +92,7 @@ public class BlackJackPanel extends JPanel
         menu.add(dealNewCards);
         
         quit.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        quit.setBounds(217, 240, 150, 50);
+        quit.setBounds(107, 241, 150, 50);
         quit.setFocusable(false);
         quit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quit.setBackground(Color.LIGHT_GRAY);
@@ -108,7 +109,7 @@ public class BlackJackPanel extends JPanel
         //Win/Lose Message
         message.setFont(new Font("Sitka Text", Font.BOLD, 30));
         message.setForeground(Color.BLACK);
-        message.setBounds(183, 38, 200, 60);
+        message.setBounds(73, 39, 200, 60);
         message.setHorizontalAlignment(SwingConstants.CENTER);
        
         menu.add(message);
@@ -415,15 +416,14 @@ public class BlackJackPanel extends JPanel
         hitCount = 0;
         
         //end game immediately if blackjack
-        if(game.endGame == true)
-        {
-        	dealerCard2.setIcon(game.dealerHand.hand.get(1).getIcon());
+        if(game.endGame == true){
         	endGame();
         }
     }
 
     //Ending the game
     public void endGame(){
+    	dealerCard2.setIcon(game.dealerHand.hand.get(1).getIcon());
     	
     	switch (game.ai1.hand.size()){
     		case 6:

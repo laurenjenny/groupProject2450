@@ -12,18 +12,10 @@ public class Hand {
     public int value()
 	{
 		int value = 0;
-		boolean hasAce = false;
-		
-		for (Card card : hand)
-		{
-			value += card.getFace().getValue();
-			if(card.getFace().getValue() == 11)
-				hasAce = true;			
+				
+		for (Card card : hand){
+			value += card.getFace().getValue();								
 		}
-		
-		if(value > 21 && hasAce == true)
-			value -= 10;
-		
 		return value;
 	}
     
