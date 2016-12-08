@@ -15,7 +15,6 @@ public class Poker {
 	Hand playerHand = new Hand();
 	Hand ai1 = new Hand();
 	Hand ai2 = new Hand();
-	Hand ai3 = new Hand();
 	Hand table = new Hand();
 	
 	Face ace = Face.Ace;
@@ -98,7 +97,7 @@ public class Poker {
 	}
 	
 	public void determineWinner(){
-		Collections.max(Arrays.asList(suitCheck(playerHand), suitCheck(ai1), suitCheck(ai2), suitCheck(ai3)));	
+		Collections.max(Arrays.asList( suitCheck( playerHand ), suitCheck( ai1 ) , suitCheck( ai2 ) ) );	
 		
 		if(Arrays.asList(0)!= Arrays.asList(1)){
 			System.out.println(Arrays.asList(0).toString());
