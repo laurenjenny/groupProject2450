@@ -1,11 +1,8 @@
 package groupProject2450;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.ListIterator;
 
 import groupProject2450.Card.Face;
 import groupProject2450.Card.Suit;
@@ -15,7 +12,6 @@ public class Poker {
 	Hand playerHand = new Hand();
 	Hand ai1 = new Hand();
 	Hand ai2 = new Hand();
-	Hand ai3 = new Hand();
 	Hand table = new Hand();
 	
 	Face ace = Face.Ace;
@@ -42,12 +38,10 @@ public class Poker {
 		
 		ai1.addCard(deck.draw(1));
 		ai2.addCard(deck.draw(1));
-		ai3.addCard(deck.draw(1));
 		playerHand.addCard(deck.draw(1));
 
 		ai1.addCard(deck.draw(1));
 		ai2.addCard(deck.draw(1));
-		ai3.addCard(deck.draw(1));
 		playerHand.addCard(deck.draw(1));
 	}
 	
@@ -97,13 +91,120 @@ public class Poker {
 		
 	}
 	
-	public void determineWinner(){
-		Collections.max(Arrays.asList(suitCheck(playerHand), suitCheck(ai1), suitCheck(ai2), suitCheck(ai3)));	
+	public boolean determineWinner(){
+		boolean winner = false;
+		boolean playerWins = false;
+		boolean ai1Wins = false;
+		boolean ai2Wins = false;
+				
 		
-		if(Arrays.asList(0)!= Arrays.asList(1)){
-			System.out.println(Arrays.asList(0).toString());
+		Hand playerHandCombined = new Hand();
+		Hand ai1HandCombined = new Hand();
+		Hand ai2HandCombined = new Hand();
+		
+		//sort(table);
+		
+		//sort(playerHand);
+		playerHandCombined.hand.addAll(table.hand);
+		playerHandCombined.hand.addAll(playerHand.hand);
+		
+		//sort(ai1);
+		ai1HandCombined.hand.addAll(table.hand);
+		ai1HandCombined.hand.addAll(ai1.hand);
+		
+		//sort(ai2);
+		ai2HandCombined.hand.addAll(table.hand);
+		ai2HandCombined.hand.addAll(ai2.hand);
+		
+		int tableValue = checkHandValues(table);
+		
+		switch(tableValue){
+		case 10:
+			//no one wins
+		case 9:
+			
+		case 8:
+			
+		case 7:
+			
+		case 6:
+			
+		case 5:
+			
+		case 4:
+			
+		case 3:
+			
+		case 2:
+			
+		case 1:
 		}
 		
+		int compare1 = checkHandValues(playerHandCombined);
+		int compare2 = checkHandValues(ai1HandCombined);
+		int compare3 = checkHandValues(ai2HandCombined);
+		
+		if(compare1 > compare2){
+			if(compare1 > compare3){
+				playerWins = true;
+				return playerWins;
+			}
+		}
+		
+		//tie breaker for compare1 == compare2
+		
+		if(compare2 > compare1){
+			if(compare2 > compare3){
+				ai1Wins = true;
+				return ai1Wins;
+			}
+		}
+		
+		//tie breaker for compare1 == compare2
+		
+		if(compare3 > compare1){
+			if(compare3 > compare2){
+				ai2Wins = true;
+				return ai2Wins;
+			}
+		}
+		
+		//tie breaker for compare1 == compare2
+		
+		return winner;
+		
+	}
+	
+	public Hand tieBreaker(Hand checkHand1, Hand checkHand2, int value){
+		Hand winner = null;
+		
+		switch(value){
+			case 10:
+				return winner;
+			case 9:
+				if(checkHand1.value() > checkHand2.value()){
+					winner = checkHand1;
+				}
+				winner = checkHand2;
+				break;
+			case 8:
+				
+			case 7:
+				
+			case 6:
+				
+			case 5:
+				
+			case 4:
+				
+			case 3:
+				
+			case 2:
+				
+			case 1:	
+				
+		}
+		return winner;
 	}
 	
 	public boolean suitCheck(Hand checkHand){
@@ -743,6 +844,7 @@ public class Poker {
 	}
 	
 	public boolean isPair(Hand checkHand){
+		ArrayList<Face> count = new ArrayList<Face>();
 		int aceCount = 0;
 		int kingCount = 0;
 		int queenCount = 0;
@@ -761,50 +863,88 @@ public class Poker {
 		for(int i = 0; i < checkHand.hand.size(); i++){
 			if(checkHand.hand.get(i).getFace().equals(ace) == true){
 				aceCount++;
+				if(aceCount == 2){
+					count.add(ace);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(king) == true){
 				kingCount++;
+				if(kingCount == 2){
+					count.add(king);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(queen) == true){
 				queenCount++;
+				if(queenCount == 2){
+					count.add(queen);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(jack) == true){
 				jackCount++;
+				if(jackCount == 2){
+					count.add(jack);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(ten) == true){
 				tenCount++;
+				if(tenCount == 2){
+					count.add(ten);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(nine) == true){
 				nineCount++;
+				if(nineCount == 2){
+					count.add(nine);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(eight) == true){
 				eightCount++;
+				if(eightCount == 2){
+					count.add(eight);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(seven) == true){
 				sevenCount++;
+				if(sevenCount == 2){
+					count.add(seven);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(six) == true){
 				sixCount++;
+				if(sixCount == 2){
+					count.add(six);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(five) == true){
 				fiveCount++;
+				if(fiveCount == 2){
+					count.add(five);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(four) == true){
 				fourCount++;
+				if(fourCount == 2){
+					count.add(four);
+				}
 			}
 			else if(checkHand.hand.get(i).getFace().equals(three) == true){
 				threeCount++;
+				if(threeCount == 2){
+					count.add(three);
+				}
 			}
 			else{
 				twoCount++;
+				if(twoCount == 2){
+					count.add(two);
+				}
 			}	
 		}
 		
-		if(aceCount > 1 || kingCount > 1 || queenCount > 1 || jackCount > 1 || tenCount > 1 || nineCount > 1 ||
-				eightCount > 1 || sevenCount > 1 || sixCount > 1 || fiveCount > 1 || fourCount > 1 || 
-				threeCount > 1 || twoCount > 1){
+		if(count.size() > 1){
 			return true;
 		}
+
 		
 		return false;
 	}
@@ -813,4 +953,44 @@ public class Poker {
 		return true;
 	}
 	
+//	Working on sort method to sort hands based on face values to better determine tie breakers
+//	
+//	public Hand sort(Hand checkHand){
+//		Hand sortHand = new Hand();
+//		ArrayList<Card> sortCard = new ArrayList<Card>();
+//		ArrayList<Card> storeCard = new ArrayList<Card>();
+//		
+//		ListIterator<Card> handIter = checkHand.hand.listIterator();
+//		ListIterator<Card> cardIter = sortCard.listIterator();
+//		
+//		
+//		while(handIter.hasNext()){
+//			while(cardIter.hasNext()){
+//				if(handIter.next().getFace().getValue() > cardIter.next().getFace().getValue()){
+//					storeCard.add(cardIter.previous());
+//					cardIter.remove();
+//					sortCard.add(handIter.previous());
+//					cardIter = sortCard.listIterator();				}
+//				else{
+//					sortCard.add(handIter.previous());
+//					sortCard.addAll(storeCard);
+//				}
+//			}
+//			if(sortCard.isEmpty()){
+//				sortCard.add(handIter.next());
+//				cardIter = sortCard.listIterator();
+//			}
+//			else{
+//				sortCard.add(handIter.previous());
+//				sortCard.addAll(storeCard);
+//				cardIter = sortCard.listIterator();
+//			}
+//		}
+//		
+//		sortHand.hand.addAll(sortCard);
+//		
+//		return sortHand;
+//		
+//	}
+
 }
