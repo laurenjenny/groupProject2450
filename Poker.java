@@ -41,12 +41,10 @@ public class Poker {
 		
 		ai1.addCard(deck.draw(1));
 		ai2.addCard(deck.draw(1));
-		ai3.addCard(deck.draw(1));
 		playerHand.addCard(deck.draw(1));
 
 		ai1.addCard(deck.draw(1));
 		ai2.addCard(deck.draw(1));
-		ai3.addCard(deck.draw(1));
 		playerHand.addCard(deck.draw(1));
 	}
 	
