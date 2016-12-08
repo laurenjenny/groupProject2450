@@ -1,11 +1,14 @@
-package groupProject;
+package groupProject2450;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 
-import groupProject.Card.Face;
-import groupProject.Card.Suit;
+import groupProject2450.Card.Face;
+import groupProject2450.Card.Suit;
 
 public class Poker {
 	Deck deck = new Deck();
@@ -95,6 +98,11 @@ public class Poker {
 	}
 	
 	public void determineWinner(){
+		Collections.max(Arrays.asList(suitCheck(playerHand), suitCheck(ai1), suitCheck(ai2), suitCheck(ai3)));	
+		
+		if(Arrays.asList(0)!= Arrays.asList(1)){
+			System.out.println(Arrays.asList(0).toString());
+		}
 		
 	}
 	
@@ -229,12 +237,206 @@ public class Poker {
 	}
 	
 	public boolean isFullHouse(Hand checkHand){
-		if(isThreeOfAKind(checkHand) == true){
-			//find which face value there's 3 of, remove from array
-			if(isPair(checkHand) == true){
-				return true;
+		ArrayList<Face> count = new ArrayList<Face>();
+
+		int aceCount = 0;
+		int kingCount = 0;
+		int queenCount = 0;
+		int jackCount = 0;
+		int tenCount = 0;
+		int nineCount = 0;
+		int eightCount = 0;
+		int sevenCount = 0;
+		int sixCount = 0;
+		int fiveCount = 0;
+		int fourCount = 0;
+		int threeCount = 0;
+		int twoCount = 0;
+		
+		int aceCount2 = 0;
+		int kingCount2 = 0;
+		int queenCount2 = 0;
+		int jackCount2 = 0;
+		int tenCount2 = 0;
+		int nineCount2 = 0;
+		int eightCount2 = 0;
+		int sevenCount2 = 0;
+		int sixCount2 = 0;
+		int fiveCount2 = 0;
+		int fourCount2 = 0;
+		int threeCount2 = 0;
+		int twoCount2 = 0;
+		
+		
+		for(int i = 0; i < checkHand.hand.size(); i++){
+			if(checkHand.hand.get(i).getFace().equals(ace) == true){
+				aceCount++;
+				if(aceCount == 3){
+					count.add(ace);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(king) == true){
+				kingCount++;
+				if(kingCount == 3){
+					count.add(king);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(queen) == true){
+				queenCount++;
+				if(queenCount == 3){
+					count.add(queen);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(jack) == true){
+				jackCount++;
+				if(jackCount == 3){
+					count.add(jack);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(ten) == true){
+				tenCount++;
+				if(tenCount == 3){
+					count.add(ten);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(nine) == true){
+				nineCount++;
+				if(nineCount == 3){
+					count.add(nine);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(eight) == true){
+				eightCount++;
+				if(eightCount == 3){
+					count.add(eight);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(seven) == true){
+				sevenCount++;
+				if(sevenCount == 3){
+					count.add(seven);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(six) == true){
+				sixCount++;
+				if(sixCount == 3){
+					count.add(six);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(five) == true){
+				fiveCount++;
+				if(fiveCount == 3){
+					count.add(five);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(four) == true){
+				fourCount++;
+				if(fourCount == 3){
+					count.add(four);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(three) == true){
+				threeCount++;
+				if(threeCount == 3){
+					count.add(three);
+				}
+			}
+			else{
+				twoCount++;
+				if(twoCount == 3){
+					count.add(two);
+				}
+			}	
+		}
+		
+		if(count.size() > 0){
+			for(int j = 0; j < checkHand.hand.size(); j++){
+				if(checkHand.hand.get(j).getFace().equals(ace) == true){
+					aceCount2++;
+					if(aceCount2 == 2  && aceCount != 3){
+						count.add(ace);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(king) == true){
+					kingCount2++;
+					if(kingCount2 == 2  && kingCount != 3){
+						count.add(king);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(queen) == true){
+					queenCount2++;
+					if(queenCount2 == 2 && queenCount != 3){
+						count.add(queen);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(jack) == true){
+					jackCount2++;
+					if(jackCount2 == 2  && jackCount != 3){
+						count.add(jack);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(ten) == true){
+					tenCount2++;
+					if(tenCount2 == 2  && tenCount != 3){
+						count.add(ten);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(nine) == true){
+					nineCount2++;
+					if(nineCount2 == 2  && nineCount != 3){
+						count.add(nine);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(eight) == true){
+					eightCount2++;
+					if(eightCount2 == 2  && eightCount != 3){
+						count.add(eight);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(seven) == true){
+					sevenCount2++;
+					if(sevenCount2 == 2  && sevenCount != 3){
+						count.add(seven);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(six) == true){
+					sixCount2++;
+					if(sixCount2 == 2  && sixCount != 3){
+						count.add(six);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(five) == true){
+					fiveCount2++;
+					if(fiveCount2 == 2  && fiveCount != 3){
+						count.add(five);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(four) == true){
+					fourCount2++;
+					if(fourCount2 == 2  && fourCount != 3){
+						count.add(four);
+					}
+				}
+				else if(checkHand.hand.get(j).getFace().equals(three) == true){
+					threeCount2++;
+					if(threeCount2 == 2  && threeCount != 3){
+						count.add(three);
+					}
+				}
+				else{
+					twoCount2++;
+					if(twoCount2 == 2  && twoCount != 3){
+						count.add(two);
+					}
+				}	
 			}
 		}
+		
+		if(count.size() > 1){
+			return true;
+		}
+
+		
 		return false;
 	}
 
@@ -434,12 +636,109 @@ public class Poker {
 	}
 	
 	public boolean isTwoPair(Hand checkHand){
-		if(isPair(checkHand) == true){
-			//find which face value there's 3 of, remove from array
-			if(isPair(checkHand) == true){
-				return true;
+		ArrayList<Face> count = new ArrayList<Face>();
+
+		int aceCount = 0;
+		int kingCount = 0;
+		int queenCount = 0;
+		int jackCount = 0;
+		int tenCount = 0;
+		int nineCount = 0;
+		int eightCount = 0;
+		int sevenCount = 0;
+		int sixCount = 0;
+		int fiveCount = 0;
+		int fourCount = 0;
+		int threeCount = 0;
+		int twoCount = 0;
+		
+		
+		for(int i = 0; i < checkHand.hand.size(); i++){
+			if(checkHand.hand.get(i).getFace().equals(ace) == true){
+				aceCount++;
+				if(aceCount == 2){
+					count.add(ace);
+				}
 			}
+			else if(checkHand.hand.get(i).getFace().equals(king) == true){
+				kingCount++;
+				if(kingCount == 2){
+					count.add(king);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(queen) == true){
+				queenCount++;
+				if(queenCount == 2){
+					count.add(queen);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(jack) == true){
+				jackCount++;
+				if(jackCount == 2){
+					count.add(jack);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(ten) == true){
+				tenCount++;
+				if(tenCount == 2){
+					count.add(ten);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(nine) == true){
+				nineCount++;
+				if(nineCount == 2){
+					count.add(nine);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(eight) == true){
+				eightCount++;
+				if(eightCount == 2){
+					count.add(eight);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(seven) == true){
+				sevenCount++;
+				if(sevenCount == 2){
+					count.add(seven);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(six) == true){
+				sixCount++;
+				if(sixCount == 2){
+					count.add(six);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(five) == true){
+				fiveCount++;
+				if(fiveCount == 2){
+					count.add(five);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(four) == true){
+				fourCount++;
+				if(fourCount == 2){
+					count.add(four);
+				}
+			}
+			else if(checkHand.hand.get(i).getFace().equals(three) == true){
+				threeCount++;
+				if(threeCount == 2){
+					count.add(three);
+				}
+			}
+			else{
+				twoCount++;
+				if(twoCount == 2){
+					count.add(two);
+				}
+			}	
 		}
+		
+		if(count.size() > 1){
+			return true;
+		}
+
+		
 		return false;
 	}
 	

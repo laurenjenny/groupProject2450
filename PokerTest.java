@@ -1,10 +1,10 @@
-package groupProject;
+package groupProject2450
+;
 
 public class PokerTest {
 
 	public static void main(String[] args){
 		Poker game = new Poker();
-		boolean value;
 		
 		game.newGame();
 		
@@ -36,6 +36,8 @@ public class PokerTest {
 		
 		System.out.println(game.ai3.hand);
 		
-		System.out.println(game.checkHandValues(game.ai3));
+		System.out.println(game.checkHandValues(game.ai3));		
+		
+		game.determineWinner();
 	}
 }
