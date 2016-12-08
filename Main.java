@@ -54,8 +54,10 @@ public class Main
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		JPanel menuPanel = new MenuPanel();
 		JPanel blackJackPanel = new BlackJackPanel();
+		JPanel pokerPanel = new PokerPanel();
 		frame.getContentPane().add(menuPanel, "Menu");
 		frame.getContentPane().add(blackJackPanel, "BlackJack");
+		frame.getContentPane().add(pokerPanel, "Poker);
 	}
 
 }
