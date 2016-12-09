@@ -18,6 +18,7 @@ public class War {
 
 	// method to play game
 	public void playGame() {
+		startDeck = new Deck();
 		startDeck.shuffle();
 		warDeal(startDeck);
 
@@ -59,12 +60,9 @@ public class War {
 
 	// method to distribute cards between the two players
 	public void warDeal(Deck deck) {
-		for (int i = 0; i < deck.deckList.size(); i++) {
-			if (i % 2 == 0) {
-				playerDeck.deckList.add(deck.deckList.get(i));
-			} else {
-				aiDeck.deckList.add(deck.deckList.get(i));
-			}
+		for (int i = 0; i < 49; i += 2) {			
+			playerDeck.deckList.add(deck.deckList.get(i));			
+			aiDeck.deckList.add(deck.deckList.get(i + 1));			
 		}
 	}
 

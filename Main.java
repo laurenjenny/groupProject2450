@@ -55,9 +55,11 @@ public class Main
 		JPanel menuPanel = new MenuPanel();
 		JPanel blackJackPanel = new BlackJackPanel();
 		JPanel pokerPanel = new PokerPanel();
+		JPanel warPanel = new WarPanel();
 		frame.getContentPane().add(menuPanel, "Menu");
 		frame.getContentPane().add(blackJackPanel, "BlackJack");
-		frame.getContentPane().add(pokerPanel, "Poker);
+		frame.getContentPane().add(pokerPanel, "Poker");
+		frame.getContentPane().add(warPanel, "War");
 	}
 
 }

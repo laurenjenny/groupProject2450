@@ -53,7 +53,7 @@ public class BlackJackPanel extends JPanel
     //Buttons
     JButton btnStay = new JButton("STAY");
     JButton btnHit = new JButton("HIT");
-    JLabel message = new JLabel();
+    JLabel message = new JLabel("Blackjack");
     JLabel messageAI1 = new JLabel();
     JLabel messageAI2 = new JLabel();
     final JButton dealNewCards = new JButton("New Deal");

@@ -1,4 +1,4 @@
-package groupProject2450;
+package groupProject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -7,8 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
-import groupProject2450.Card.Face;
-import groupProject2450.Card.Suit;
+import groupProject.Card.*;
 
 public class Poker {
 	Deck deck = new Deck();

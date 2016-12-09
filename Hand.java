@@ -22,5 +22,12 @@ public class Hand {
     public int size(){
     	return hand.size();
     }
-
+    
+    public Card get(int i){
+    	return hand.get(i);
+    }
+    
+    public Card remove(int i){
+    	return hand.remove(i);
+    }
 }

@@ -29,5 +29,4 @@ public class Deck {
 	   deckList.remove(i);
 	   return draw;
    }
-	
 }
