@@ -42,7 +42,7 @@ public class PokerPanel extends JPanel
     final ImageIcon backOfCard = new ImageIcon(getClass().getResource("Images/Back.png"));
     //Buttons
     JButton btnDraw = new JButton("Draw Turn");
-    JLabel message = new JLabel();
+    JLabel message = new JLabel("Poker");
     JLabel messageAI1 = new JLabel();
     JLabel messageAI2 = new JLabel();
     final JButton dealNewCards = new JButton("New Game");
