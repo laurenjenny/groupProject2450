@@ -122,7 +122,7 @@ public class WarPanel extends JPanel
         //Hit button Action
         playBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {            	
+            public void actionPerformed(ActionEvent e) { 
                 win = game.playRound();
                 draw();
             }
@@ -156,8 +156,8 @@ public void resetCards(){
         message.setVisible(false);
         gameMessage.setVisible(false);
         menu.setVisible(false);
-        ai1Total.setText(String.valueOf(game.aiDeck.deckList.size()));
-        playerTotal.setText(String.valueOf(game.playerDeck.deckList.size()));
+        ai1Total.setText(String.valueOf(game.aiDeck.hand.size()));
+        playerTotal.setText(String.valueOf(game.playerDeck.hand.size()));
         
         //Cards
         ai1Card1.setVisible(false);
@@ -165,21 +165,21 @@ public void resetCards(){
     }
 
 public void draw(){
-	ai1Card1.setIcon(game.aiDeck.deckList.get(0).getIcon());
-    playerCard1.setIcon(game.playerDeck.deckList.get(0).getIcon());
+	ai1Card1.setIcon(game.aiDeck.hand.get(0).getIcon());
+    playerCard1.setIcon(game.playerDeck.hand.get(0).getIcon());
     ai1Card1.setVisible(true);
     playerCard1.setVisible(true);
     gameMessage.setVisible(true);
-    ai1Total.setText(String.valueOf(game.aiDeck.deckList.size()));
-    playerTotal.setText(String.valueOf(game.playerDeck.deckList.size()));
+    ai1Total.setText(String.valueOf(game.aiDeck.hand.size()));
+    playerTotal.setText(String.valueOf(game.playerDeck.hand.size()));
     
     if(win)
     	gameMessage.setText("Player Wins Round");
     else
     	gameMessage.setText("AI Wins Round");
     
-    if((game.playerDeck.deckList.size() == 0) || (game.aiDeck.deckList.size() == 0)){
-    	win = game.determineWinner();
+    if((game.playerDeck.hand.size() == 0) || (game.aiDeck.hand.size() == 0)){
+    	win = game.determineGameWinner();
     	end();
     }
 }
